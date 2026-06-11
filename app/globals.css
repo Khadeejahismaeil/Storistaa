@@ -59,17 +59,87 @@
   }
 }
 
-/* Story prose: cozy, readable, well-spaced */
+/* Shooting-star streak (used via inline animation in StarsBackground) */
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--r, 25deg)) translateX(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--r, 25deg)) translateX(240px);
+  }
+}
+
+/* ───────────── Storybook (parchment) presentation ───────────── */
+.storybook-frame {
+  /* Gilded, glowing outer frame that holds the page */
+  padding: clamp(6px, 1.5vw, 12px);
+  border-radius: 1.75rem;
+  background: linear-gradient(145deg, rgba(255, 227, 154, 0.5), rgba(168, 150, 255, 0.35));
+  box-shadow: 0 0 70px rgba(255, 217, 122, 0.28), 0 30px 70px -25px rgba(0, 0, 0, 0.75);
+}
+
+.parchment {
+  position: relative;
+  border-radius: 1.25rem;
+  color: #3b2c19;
+  background-color: #f6ecd2;
+  background-image:
+    radial-gradient(130% 130% at 50% 0%, rgba(255, 252, 240, 0.9) 0%, rgba(243, 230, 196, 0.6) 55%, rgba(232, 216, 178, 0.85) 100%),
+    repeating-linear-gradient(0deg, rgba(120, 90, 40, 0.025) 0px, rgba(120, 90, 40, 0.025) 1px, transparent 1px, transparent 26px);
+  box-shadow: inset 0 0 70px rgba(120, 90, 40, 0.18);
+}
+
+.parchment::before {
+  /* delicate inner decorative border */
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(120, 90, 40, 0.22);
+  border-radius: 0.85rem;
+  pointer-events: none;
+}
+
+/* Story prose on parchment: cozy, readable, well-spaced */
 .story-prose {
-  @apply font-body text-[1.05rem] leading-relaxed text-moon-100/90;
+  @apply font-body leading-relaxed;
+  color: #4a3826;
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.15rem);
+  line-height: 1.85;
   white-space: pre-wrap;
 }
+.story-prose p {
+  margin-bottom: 1rem;
+}
 .story-prose::first-letter {
-  @apply font-display text-moon-300;
-  font-size: 2.4em;
-  line-height: 1;
+  @apply font-display;
+  color: #8a5a2b;
+  font-size: 3em;
+  line-height: 0.8;
   float: left;
-  padding-right: 0.08em;
+  padding-right: 0.1em;
+  padding-top: 0.04em;
+}
+
+/* Lesson + Tomorrow callouts inside the storybook */
+.story-callout {
+  @apply rounded-2xl px-5 py-4;
+  border: 1px solid rgba(120, 90, 40, 0.25);
+  background: rgba(255, 247, 224, 0.55);
+}
+.story-callout-label {
+  @apply font-display text-xs font-semibold uppercase tracking-[0.18em];
+  color: #9a6a2e;
+}
+
+/* Original (dark) story prose kept for any non-parchment context */
+.story-prose-dark {
+  @apply font-body text-[1.05rem] leading-relaxed text-moon-100/90;
+  white-space: pre-wrap;
 }
 
 /* Thin, dreamy scrollbar */

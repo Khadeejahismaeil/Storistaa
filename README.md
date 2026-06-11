@@ -9,12 +9,24 @@ age-appropriate, personalized bedtime story.
 
 ## ✨ Features
 
-- Dreamy night-sky UI: glowing CSS moon, twinkling stars, drifting clouds, sparkles
-- Four themes: **Fantasy**, **Comedy**, **Sci-fi**, and a gentle **Cozy-Spooky** mode
-- Age-aware storytelling (length & vocabulary adapt to the child's age)
-- Cozy "the moon is writing your story…" loading animation
-- Glowing storybook output card with **Copy**, **Regenerate**, and **Clear** actions
-- Form validation + friendly error handling, fully responsive
+- **Living night-sky atmosphere** — glowing CSS moon, twinkling stars, drifting
+  clouds, rising particles, occasional shooting stars, and gentle mouse parallax
+- **Five immersive worlds** — Fantasy, Comedy, Sci-Fi, Cozy-Spooky, and Adventure,
+  each with its own icon, accent color, tagline, and hover/selection animation
+- **Premium AI stories** — the child is the hero; age-aware language; real dialogue
+  and emotional beats; returns a **Title**, **Story**, **Lesson Learned**, and a
+  **Tomorrow's Adventure** teaser
+- **Magical reveal sequence** — a 3–5s Framer Motion ritual ("the moon is collecting
+  tonight's memories…") before the storybook opens
+- **Storybook presentation** — warm parchment page, gilded glow, drop cap, decorative
+  borders, and elegant typography
+- **Read Aloud mode** — browser speech synthesis with play / pause / resume / stop
+  and a reading-speed control
+- **My Story Library** — every story is saved to LocalStorage; reopen, copy,
+  regenerate, or delete from a slide-in drawer
+- **Delightful details** — sparkle celebration when a story is born, magical empty
+  states, and friendly themed error messages
+- Fully responsive and first-class on mobile; respects `prefers-reduced-motion`
 
 ## 🚀 Getting started
 
@@ -42,7 +54,7 @@ Open http://localhost:3000 🌙
   [`lib/openrouter.js`](lib/openrouter.js).
 
 You can also change the model with `NEXT_PUBLIC_OPENROUTER_MODEL`
-(default: `openai/gpt-4o-mini`).
+(default: `openai/gpt-oss-20b:free`).
 
 > ⚠️ **Security note:** because this is frontend-only, the API key is exposed to
 > the browser. Use a key with a low spend limit, and don't commit `.env.local`
@@ -53,20 +65,27 @@ You can also change the model with `NEXT_PUBLIC_OPENROUTER_MODEL`
 ```
 app/
   layout.js          # fonts (Fredoka + Quicksand) + metadata
-  page.js            # main single-page app: state, validation, orchestration
-  globals.css        # Tailwind + dreamy theme, cards, buttons, animations
+  page.js            # single-page app: state machine, reveal timing, library
+  globals.css        # Tailwind + dreamy theme, parchment storybook, animations
 components/
-  StarsBackground.js # twinkling stars, drifting clouds, sparkles
-  Moon.js            # pure-CSS glowing crescent moon
+  StarsBackground.js # stars, clouds, particles, shooting stars, mouse parallax
+  Moon.js            # pure-CSS glowing, breathing crescent moon
   Hero.js            # title + subtitle
-  StoryForm.js       # inputs: name, age, theme, day events
-  LoadingState.js    # "the moon is writing your story…" animation
-  StoryOutput.js     # glowing storybook card + Copy/Regenerate/Clear
-  ErrorBanner.js     # friendly error messages
+  StoryForm.js       # inputs + the five immersive theme cards
+  RevealSequence.js  # 4-phase Framer Motion "story is opening" ritual
+  StoryBook.js       # parchment storybook: title, prose, lesson, tomorrow
+  ReadAloudControls.js # speech-synthesis play/pause/resume/stop + speed
+  StoryLibrary.js    # LocalStorage library drawer (reopen/copy/regen/delete)
+  Celebration.js     # sparkle burst when a story is born
+  ErrorBanner.js     # gentle, on-theme error messages
 lib/
-  openrouter.js      # prompt building + OpenRouter fetch + error handling
+  themes.js          # theme identities (icon, accent, tagline) + prompt guidance
+  openrouter.js      # prompt building, structured parsing, themed errors
+  library.js         # LocalStorage CRUD for saved stories
+  useSpeech.js       # SpeechSynthesis hook for Read Aloud mode
 ```
 
 ## 🛠️ Tech stack
 
-Next.js (App Router) · React · Tailwind CSS · OpenRouter · 100% frontend
+Next.js (App Router) · React · Tailwind CSS · Framer Motion · Web Speech API ·
+LocalStorage · OpenRouter · 100% frontend

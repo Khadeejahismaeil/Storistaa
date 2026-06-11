@@ -63,6 +63,20 @@ module.exports = {
           "0%": { transform: "translateX(-10%)" },
           "100%": { transform: "translateX(110%)" },
         },
+        rise: {
+          "0%": { transform: "translateY(0)", opacity: "0" },
+          "15%": { opacity: "0.6" },
+          "100%": { transform: "translateY(-160px)", opacity: "0" },
+        },
+        "moon-breathe": {
+          "0%, 100%": { transform: "scale(1)", filter: "brightness(1)" },
+          "50%": { transform: "scale(1.015)", filter: "brightness(1.08)" },
+        },
+        "pop-in": {
+          "0%": { opacity: "0", transform: "scale(0.6)" },
+          "70%": { opacity: "1", transform: "scale(1.08)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         twinkle: "twinkle 3s ease-in-out infinite",
@@ -72,6 +86,9 @@ module.exports = {
         "fade-up": "fade-up 0.6s ease-out both",
         shimmer: "shimmer 3s linear infinite",
         drift: "drift 40s linear infinite",
+        rise: "rise linear infinite",
+        "moon-breathe": "moon-breathe 8s ease-in-out infinite",
+        "pop-in": "pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both",
       },
     },
   },
